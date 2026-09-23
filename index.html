@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赵敏 · 测试开发工程师 作品集</title>
+<meta name="description" content="赵敏 · 测试开发工程师（AI 测试方向）作品集：AI 智能测试平台、大模型质量评测、RAG 问答系统、接口自动化框架。">
+<style>
+  :root{
+    --ink:#0f172a; --sub:#5b6b82; --line:#e2e8f0;
+    --accent:#4f46e5; --accent-2:#7c3aed; --accent-soft:#eef2ff;
+    --bg:#f6f8fb; --card:#ffffff; --good:#059669; --good-soft:#ecfdf5;
+    --amber:#d97706; --amber-soft:#fffbeb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC","Segoe UI",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 导航 ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(226,232,240,.8);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  nav .brand{font-weight:700;font-size:15.5px;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px}
+  nav .brand i{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+  nav .links{display:flex;gap:4px}
+  nav .links a{
+    color:var(--sub);text-decoration:none;font-size:13.5px;padding:6px 13px;border-radius:8px;
+    transition:color .15s,background .15s;
+  }
+  nav .links a:hover{color:var(--accent);background:var(--accent-soft)}
+  @media (max-width:640px){nav .links a{padding:6px 8px;font-size:12.5px}}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;color:#fff;
+    background:linear-gradient(130deg,#312e81 0%,#4f46e5 45%,#7c3aed 80%,#9333ea 100%);
+    padding:78px 0 96px;
+  }
+  .hero::before{ /* 网格底纹 */
+    content:"";position:absolute;inset:0;opacity:.16;
+    background:
+      repeating-linear-gradient(0deg,transparent 0 39px,rgba(255,255,255,.45) 39px 40px),
+      repeating-linear-gradient(90deg,transparent 0 39px,rgba(255,255,255,.45) 39px 40px);
+  }
+  .hero::after{ /* 光斑 */
+    content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.22),transparent 65%);
+    top:-140px;right:-90px;
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .hero .kicker{
+    display:inline-block;font-size:12.5px;letter-spacing:2.5px;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+    padding:4px 14px;border-radius:999px;margin-bottom:16px;
+  }
+  .hero h1{font-size:40px;letter-spacing:1.5px;line-height:1.25}
+  .hero h1 small{display:block;font-size:17px;font-weight:400;opacity:.92;margin-top:10px;letter-spacing:.5px}
+  .hero .tagline{margin-top:16px;font-size:15px;opacity:.88;max-width:660px}
+  .hero .chips{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+  .hero .chips a,.hero .chips span{
+    background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.26);color:#fff;
+    padding:6px 16px;border-radius:999px;font-size:13px;text-decoration:none;
+    transition:background .15s;
+  }
+  .hero .chips a:hover{background:rgba(255,255,255,.26)}
+
+  /* ---------- 数据卡 ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-46px;position:relative;z-index:2}
+  .stat{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;
+    box-shadow:0 10px 26px rgba(15,23,42,.08);
+  }
+  .stat b{display:block;font-size:26px;color:var(--accent);line-height:1.2}
+  .stat small{color:var(--sub);font-size:12.5px}
+
+  /* ---------- 区块 ---------- */
+  section{padding:58px 0 4px;scroll-margin-top:64px}
+  h2{font-size:23px;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  h2::before{content:"";width:5px;height:23px;background:linear-gradient(180deg,var(--accent),var(--accent-2));border-radius:3px}
+  .desc{color:var(--sub);font-size:14px;margin-bottom:22px}
+
+  /* ---------- 项目卡 ---------- */
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:28px 30px;margin-bottom:24px;
+    box-shadow:0 4px 16px rgba(15,23,42,.05);
+    transition:transform .18s,box-shadow .18s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,23,42,.10)}
+  .card h3{font-size:19.5px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .card h3 .en{color:var(--sub);font-weight:400;font-size:13.5px;font-family:Consolas,monospace}
+  .badge{font-size:12px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:2px 12px;font-weight:600}
+  .badge.live{background:var(--good-soft);color:var(--good)}
+  .badge.build{background:var(--amber-soft);color:var(--amber)}
+  .role-line{color:var(--sub);font-size:13.5px;margin-top:3px}
+  .problem{
+    background:var(--amber-soft);border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;
+    padding:10px 14px;margin:14px 0;font-size:14px;
+  }
+  .card ul{margin:10px 0 4px 18px;font-size:14.5px}
+  .card li{margin-bottom:7px}
+  .card li b{color:var(--accent)}
+  .links{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:8px 19px;border-radius:10px;font-size:13.5px;text-decoration:none;
+    border:1px solid var(--line);color:var(--ink);background:#fff;transition:transform .15s,box-shadow .15s;
+  }
+  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(79,70,229,.18)}
+
+  /* ---------- 截图画廊 ---------- */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+  .shots figure{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  .shots img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;object-position:top;transition:transform .25s}
+  .shots figure:hover img{transform:scale(1.03)}
+  .shots figcaption{font-size:12px;color:var(--sub);text-align:center;padding:5px 4px;border-top:1px solid var(--line)}
+
+  /* ---------- 架构流程图（纯 CSS，不依赖截图） ---------- */
+  .pipe{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:18px 0 4px}
+  .pnode{
+    flex:1 1 120px;min-width:118px;background:var(--accent-soft);border:1px solid #dbe1ff;
+    border-radius:10px;padding:10px 10px;text-align:center;font-size:13px;font-weight:600;color:#3730a3;
+    display:flex;flex-direction:column;justify-content:center;line-height:1.5;
+  }
+  .pnode small{font-weight:400;color:#6d6ae0;font-size:11.5px}
+  .parrow{align-self:center;color:#a5b4fc;font-size:16px;font-weight:700}
+  .pnode.dark{background:#f1f5f9;border-color:var(--line);color:#334155}
+  .pnode.dark small{color:var(--sub)}
+
+  /* ---------- 技能 ---------- */
+  .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:0 3px 12px rgba(15,23,42,.04)}
+  .sg h4{font-size:15px;margin-bottom:11px;color:var(--accent);display:flex;align-items:center;gap:8px}
+  .sg h4::before{content:"";width:7px;height:7px;border-radius:2px;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:#f1f5f9;border:1px solid var(--line);border-radius:999px;padding:3px 13px;font-size:13px;transition:background .15s}
+  .tag:hover{background:var(--accent-soft)}
+  .tag.build{background:var(--amber-soft);border-color:#fde1b6;color:var(--amber)}
+
+  /* ---------- 时间线（实习 / 教育） ---------- */
+  .rows .row{display:flex;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+  .rows .row:last-child{border-bottom:none}
+  .rows .when{color:var(--sub);min-width:104px;flex-shrink:0;font-variant-numeric:tabular-nums}
+  .rows .row b{color:var(--accent)}
+  .rows .job b{color:var(--ink)}
+
+  /* ---------- 入场动效 ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.on{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .card:hover{transform:none}
+  }
+
+  footer{
+    margin-top:60px;padding:30px 0 38px;border-top:1px solid var(--line);
+    color:var(--sub);font-size:13px;text-align:center;
+  }
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media (max-width:720px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .shots{grid-template-columns:1fr}
+    .skill-groups{grid-template-columns:1fr}
+    .hero h1{font-size:30px}
+    .rows .when{min-width:88px;font-size:13px}
+  }
+  @media print{
+    nav{display:none}
+    .hero{padding:40px 0 44px}
+    .card,.stat,.sg{box-shadow:none}
+    section{padding:26px 0 4px}
+    body{background:#fff}
+    .reveal{opacity:1;transform:none}
+    a{color:var(--ink);text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i>赵敏 · 测试开发作品集</a>
+    <div class="links">
+      <a href="#projects">精选项目</a>
+      <a href="#skills">专业技能</a>
+      <a href="#intern">实习经历</a>
+      <a href="#edu">教育与奖项</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker">QA · TEST DEVELOPMENT · AI TESTING</div>
+    <h1>赵敏<small>测试开发工程师（AI 测试方向）｜ 2027 届 · 江苏南京</small></h1>
+    <div class="tagline">
+      白天在公司练功能测试基本功，课后把 AI 变成测试生产力——
+      用大模型生成<b>可追溯</b>的测试用例，用工程化方法<b>评测大模型本身</b>，正在亲手搭建接口自动化框架。
+    </div>
+    <div class="chips">
+      <a href="https://testcase-agent.streamlit.app">▶ 主项目在线 Demo</a>
+      <a href="https://github.com/shian555">GitHub：shian555</a>
+      <a href="mailto:105299448@qq.com">105299448@qq.com</a>
+      <span>📍 江苏 · 南京</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="stats">
+    <div class="stat reveal"><b>3 + 1</b><small>开源项目（+1 个框架建设中）</small></div>
+    <div class="stat reveal"><b>1</b><small>免安装在线 Demo</small></div>
+    <div class="stat reveal"><b>33</b><small>单份 PRD 自动生成用例</small></div>
+    <div class="stat reveal"><b>100</b><small>条 LLM 质量评测集</small></div>
+  </div>
+
+  <!-- ================= 项目 ================= -->
+  <section id="projects">
+    <h2>精选项目</h2>
+    <p class="desc">每个项目按「解决的问题 → 技术方案 → 效果」组织，全部有源码可查，主项目在线可访问。</p>
+
+    <!-- ① 旗舰：testcase-agent -->
+    <div class="card reveal">
+      <h3>AI 智能测试平台 <span class="en">testcase-agent</span>
+        <span class="badge live">在线可访问</span><span class="badge">CI 通过</span></h3>
+      <div class="role-line">独立开发者 ｜ Python · Streamlit · 多 Agent · Pytest · GitHub Actions</div>
+      <div class="problem"><strong>解决的问题：</strong>通用大模型直出的测试用例方法不可溯、质量不稳，且"生成完就丢"，无法支撑真实测试管理流程。</div>
+      <ul>
+        <li><b>多 Agent 流水线：</b>「需求分析 → 测试点提炼 → 用例生成 → 独立评审」四段编排，dataclass 结构化传递，Agent 可单独替换</li>
+        <li><b>方法论注入：</b>显式注入等价类 / 边界值 / 场景法 / 错误猜测四类设计方法，每条用例标注 method 来源、全程可追溯</li>
+        <li><b>评审门禁：</b>独立评审 Agent 按 5 项标准打分（方法覆盖 / 结构 / 优先级 / 可追溯 / 边界±1），形成"生成-评审"对抗闭环</li>
+        <li><b>业务闭环：</b>AI 产出经人工勾选采纳入库，覆盖用例库 → 测试执行 → 测试报告 → 缺陷跟踪 → 工作台看板，ID 全局唯一可追溯</li>
+      </ul>
+      <div class="shots">
+        <figure><img src="assets/demo_home.png" alt="工作台看板" loading="lazy"><figcaption>工作台看板</figcaption></figure>
+        <figure><img src="assets/demo_result.png" alt="用例生成" loading="lazy"><figcaption>多 Agent 用例生成</figcaption></figure>
+        <figure><img src="assets/demo_cases.png" alt="用例库" loading="lazy"><figcaption>用例库</figcaption></figure>
+        <figure><img src="assets/demo_execution.png" alt="测试执行" loading="lazy"><figcaption>测试执行</figcaption></figure>
+        <figure><img src="assets/demo_report.png" alt="测试报告" loading="lazy"><figcaption>质量报告</figcaption></figure>
+        <figure><img src="assets/demo_defects.png" alt="缺陷管理" loading="lazy"><figcaption>缺陷管理</figcaption></figure>
+      </div>
+      <div class="links">
+        <a class="btn primary" href="https://testcase-agent.streamlit.app">▶ 在线 Demo（免安装）</a>
+        <a class="btn" href="https://github.com/shian555/testcase-agent">GitHub 源码</a>
+      </div>
+    </div>
+
+    <!-- ② llm-qa-eval -->
+    <div class="card reveal">
+      <h3>大模型问答系统质量评测与安全测试 <span class="en">llm-qa-eval</span><span class="badge">CI 通过</span></h3>
+      <div class="role-line">独立开发者 ｜ Python · Pytest · GitHub Actions</div>
+      <div class="problem"><strong>解决的问题：</strong>大模型输出具有概率性、无法精确断言，RAG 问答系统的质量与安全风险难以量化。</div>
+      <div class="pipe">
+        <span class="pnode">100 条评测集<small>70 正常 · 15 注入 · 15 幻觉</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode dark">QATarget 被测对象<small>mock 离线 / OpenAI 兼容真实 LLM</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode">三维指标<small>召回率 · 准确率 · 引用准确性</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode dark">自动回归报告<small>Pytest 参数化 + CI</small></span>
+      </div>
+      <ul>
+        <li><b>安全测试：</b>独立 security 模块内置 Prompt 注入、越狱（DAN / 角色扮演）攻击载荷，检测模型是否被带偏</li>
+        <li><b>效果：</b>模型 / 索引 / 提示词变更自动回归、一键出报告——把传统回归测试思想迁移到 AI 系统</li>
+      </ul>
+      <div class="links">
+        <a class="btn" href="https://github.com/shian555/llm-qa-eval">GitHub 源码</a>
+      </div>
+    </div>
+
+    <!-- ③ rag-qa-system -->
+    <div class="card reveal">
+      <h3>RAG 安全知识库问答 <span class="en">rag-qa-system</span></h3>
+      <div class="role-line">独立开发者 ｜ Python · BGE · FAISS · BM25 · Rerank</div>
+      <div class="pipe">
+        <span class="pnode dark">安全文档<small>递归分块 512/50</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode">BGE 向量化<small>FAISS 索引</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode">混合召回<small>向量 + BM25</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode dark">Rerank 精排</span>
+        <span class="parrow">→</span>
+        <span class="pnode">引用编号答案<small>带 [n] 可溯源</small></span>
+      </div>
+      <ul>
+        <li>同时作为 llm-qa-eval 的被测对象，形成「<b>建 RAG → 测 RAG</b>」的迭代闭环；Pytest 单测 + CI</li>
+      </ul>
+      <div class="links">
+        <a class="btn" href="https://github.com/shian555/rag-qa-system">GitHub 源码</a>
+      </div>
+    </div>
+
+    <!-- ④ 接口自动化框架（建设中） -->
+    <div class="card reveal">
+      <h3>Pytest + Requests 接口自动化框架 <span class="en">api-test-framework</span><span class="badge build">🔨 搭建中 · 秋招前开源</span></h3>
+      <div class="role-line">从 0 亲手搭建 ｜ Python · Pytest · Requests · 分层设计</div>
+      <div class="pipe">
+        <span class="pnode">用例层<small>testcases · 三层断言</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode dark">业务接口层<small>apis · 一个接口一个方法</small></span>
+        <span class="parrow">→</span>
+        <span class="pnode">客户端封装<small>ApiClient（requests.Session）</small></span>
+      </div>
+      <ul>
+        <li><b>已完成（v0.2）：</b>三层结构跑通，3 条真实接口用例通过（查询成功 / 404 异常 / 创建成功），断言按「状态码 → 响应结构 → 业务值」三层设计</li>
+        <li><b>进行中：</b>fixture 环境管理 → 参数化数据驱动 → 接口关联 → Allure 报告 + CI 接入</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 技能 ================= -->
+  <section id="skills">
+    <h2>专业技能</h2>
+    <p class="desc">以真实项目与实践为支撑，不做罗列。</p>
+    <div class="skill-groups">
+      <div class="sg reveal">
+        <h4>测试方法</h4>
+        <div class="tags">
+          <span class="tag">功能测试</span><span class="tag">UI 测试</span>
+          <span class="tag">等价类划分</span><span class="tag">边界值</span>
+          <span class="tag">场景法</span><span class="tag">错误猜测</span>
+          <span class="tag">回归测试</span><span class="tag">缺陷管理</span>
+        </div>
+      </div>
+      <div class="sg reveal">
+        <h4>AI 测试</h4>
+        <div class="tags">
+          <span class="tag">AI 用例生成</span><span class="tag">Prompt 注入检测</span>
+          <span class="tag">越狱检测</span><span class="tag">幻觉检测</span>
+          <span class="tag">LLM 质量评估</span><span class="tag">多 Agent 编排</span>
+        </div>
+      </div>
+      <div class="sg reveal">
+        <h4>测试开发</h4>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Pytest</span>
+          <span class="tag">Requests</span><span class="tag">Streamlit</span>
+          <span class="tag">Selenium（了解）</span><span class="tag">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="sg reveal">
+        <h4>计算机基础</h4>
+        <div class="tags">
+          <span class="tag">MySQL / SQL</span><span class="tag">Git</span>
+          <span class="tag">Linux 常用命令</span><span class="tag">计算机网络</span>
+          <span class="tag">CET-6（480）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 实习 ================= -->
+  <section id="intern">
+    <h2>实习经历</h2>
+    <div class="card rows reveal">
+      <div class="row job">
+        <span class="when">2026.07 – 至今</span>
+        <span><b>南京思后行信息技术有限公司 · 测试实习生</b><br>
+        负责公司自研数据治理平台（央企客户，B/S 架构，覆盖财务 / 人力 / 数据资源域）的测试工作：
+        UI 测试与上线前验证；手写设计测试用例，单轮最多 50+ 条，覆盖功能、边界与异常场景；
+        编写 SQL 核对平台数据、协助定位数据异常；对接客户反馈问题，复现、初步定位并跟进闭环；
+        在公司自研工作台登记与跟踪缺陷。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 教育 ================= -->
+  <section id="edu">
+    <h2>教育与奖项</h2>
+    <div class="card rows reveal">
+      <div class="row"><span class="when">2025 – 2027</span><span>南京审计大学金审学院 · 信息管理与信息系统（本科）｜ GPA 3.82/5.0，排名 2/108</span></div>
+      <div class="row"><span class="when">2022 – 2025</span><span>江苏护理职业学院（专科）｜ GPA 4.12/5.0，排名 1/258，<b>国家奖学金</b>——跨专业专升本，自学转入软件测试</span></div>
+      <div class="row"><span class="when">竞赛</span><span>江苏省"领航杯"数字素养大赛 <b>省级二等奖</b>（负责人）｜ 全国信息安全大赛（Web 安全方向）</span></div>
+    </div>
+  </section>
+
+  <footer>
+    赵敏 · 测试开发作品集 ｜ <a href="mailto:105299448@qq.com">105299448@qq.com</a> ｜
+    <a href="https://github.com/shian555">github.com/shian555</a> ｜ 2026 年 9 月更新 ｜ 本页托管于 GitHub Pages
+  </footer>
+
+</div>
+
+<script>
+  // 滚动入场动效：元素进入视口时淡入上浮
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+    }
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>

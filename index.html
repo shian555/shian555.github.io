@@ -134,6 +134,12 @@
   .parrow{align-self:center;color:#a5b4fc;font-size:16px;font-weight:700}
   .pnode.dark{background:#f1f5f9;border-color:var(--line);color:#334155}
   .pnode.dark small{color:var(--sub)}
+  .sub{border:1px dashed #c7d2fe;border-radius:12px;padding:14px 16px;margin-top:16px;background:#fbfcff}
+  .sub h4{font-size:14px;color:#3730a3;margin-bottom:8px}
+  .sub h4 .en{color:var(--sub);font-weight:400;font-size:12px;font-family:Consolas,monospace}
+  .sub p{font-size:13.5px;color:var(--sub);margin:8px 0 0}
+  .sub a{color:var(--accent);text-decoration:none;font-weight:600}
+  .links .note{font-size:12px;color:var(--sub);align-self:center}
 
   /* ---------- 技能 ---------- */
   .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -219,7 +225,7 @@
 <div class="wrap">
 
   <div class="stats">
-    <div class="stat reveal"><b>3 + 1</b><small>开源项目（+1 个框架建设中）</small></div>
+    <div class="stat reveal"><b>2</b><small>核心开源项目（另有框架建设中）</small></div>
     <div class="stat reveal"><b>1</b><small>免安装在线 Demo</small></div>
     <div class="stat reveal"><b>33</b><small>单份 PRD 自动生成用例</small></div>
     <div class="stat reveal"><b>100</b><small>条 LLM 质量评测集</small></div>
@@ -253,6 +259,7 @@
       <div class="links">
         <a class="btn primary" href="https://testcase-agent.streamlit.app">▶ 在线 Demo（免安装）</a>
         <a class="btn" href="https://github.com/shian555/testcase-agent">GitHub 源码</a>
+        <span class="note">免费云主机，首次打开约需 1 分钟唤醒；若打不开请看上方截图与源码</span>
       </div>
     </div>
 
@@ -274,35 +281,28 @@
         <li><b>安全测试：</b>独立 security 模块内置 Prompt 注入、越狱（DAN / 角色扮演）攻击载荷，检测模型是否被带偏</li>
         <li><b>效果：</b>模型 / 索引 / 提示词变更自动回归、一键出报告——把传统回归测试思想迁移到 AI 系统</li>
       </ul>
+      <div class="sub">
+        <h4>被测对象（也是我的作品）：RAG 安全知识库问答 <span class="en">rag-qa-system</span></h4>
+        <div class="pipe">
+          <span class="pnode dark">安全文档<small>递归分块 512/50</small></span>
+          <span class="parrow">→</span>
+          <span class="pnode">BGE 向量化<small>FAISS 索引</small></span>
+          <span class="parrow">→</span>
+          <span class="pnode">混合召回<small>向量 + BM25</small></span>
+          <span class="parrow">→</span>
+          <span class="pnode dark">Rerank 精排</span>
+          <span class="parrow">→</span>
+          <span class="pnode">引用编号答案<small>带 [n] 可溯源</small></span>
+        </div>
+        <p>「建 RAG → 测 RAG」：它既是独立项目（Pytest 单测 + CI），又作为上面的被测对象，形成迭代闭环。
+          <a href="https://github.com/shian555/rag-qa-system">GitHub 源码 →</a></p>
+      </div>
       <div class="links">
         <a class="btn" href="https://github.com/shian555/llm-qa-eval">GitHub 源码</a>
       </div>
     </div>
 
-    <!-- ③ rag-qa-system -->
-    <div class="card reveal">
-      <h3>RAG 安全知识库问答 <span class="en">rag-qa-system</span></h3>
-      <div class="role-line">独立开发者 ｜ Python · BGE · FAISS · BM25 · Rerank</div>
-      <div class="pipe">
-        <span class="pnode dark">安全文档<small>递归分块 512/50</small></span>
-        <span class="parrow">→</span>
-        <span class="pnode">BGE 向量化<small>FAISS 索引</small></span>
-        <span class="parrow">→</span>
-        <span class="pnode">混合召回<small>向量 + BM25</small></span>
-        <span class="parrow">→</span>
-        <span class="pnode dark">Rerank 精排</span>
-        <span class="parrow">→</span>
-        <span class="pnode">引用编号答案<small>带 [n] 可溯源</small></span>
-      </div>
-      <ul>
-        <li>同时作为 llm-qa-eval 的被测对象，形成「<b>建 RAG → 测 RAG</b>」的迭代闭环；Pytest 单测 + CI</li>
-      </ul>
-      <div class="links">
-        <a class="btn" href="https://github.com/shian555/rag-qa-system">GitHub 源码</a>
-      </div>
-    </div>
-
-    <!-- ④ 接口自动化框架（建设中） -->
+    <!-- ③ 接口自动化框架（建设中） -->
     <div class="card reveal">
       <h3>Pytest + Requests 接口自动化框架 <span class="en">api-test-framework</span><span class="badge build">🔨 搭建中 · 秋招前开源</span></h3>
       <div class="role-line">从 0 亲手搭建 ｜ Python · Pytest · Requests · 分层设计</div>
@@ -364,15 +364,16 @@
   <!-- ================= 实习 ================= -->
   <section id="intern">
     <h2>实习经历</h2>
-    <div class="card rows reveal">
-      <div class="row job">
-        <span class="when">2026.07 – 至今</span>
-        <span><b>南京思后行信息技术有限公司 · 测试实习生</b><br>
-        负责公司自研数据治理平台（央企客户，B/S 架构，覆盖财务 / 人力 / 数据资源域）的测试工作：
-        UI 测试与上线前验证；手写设计测试用例，单轮最多 50+ 条，覆盖功能、边界与异常场景；
-        编写 SQL 核对平台数据、协助定位数据异常；对接客户反馈问题，复现、初步定位并跟进闭环；
-        在公司自研工作台登记与跟踪缺陷。</span>
-      </div>
+    <div class="card reveal">
+      <h3>南京思后行信息技术有限公司 <span class="en">测试实习生 · 2026.07 – 至今</span></h3>
+      <div class="role-line">负责对象：公司自研数据治理平台（央企客户，B/S 架构，覆盖财务 / 人力 / 数据资源域）</div>
+      <ul>
+        <li><b>UI 测试：</b>负责平台功能测试与上线前验证，执行核心业务流程验证</li>
+        <li><b>用例设计：</b>手写设计与维护测试用例，单轮最多 50+ 条，覆盖功能、边界与异常场景</li>
+        <li><b>数据核查：</b>编写 SQL 查询核对平台数据，协助定位数据异常问题</li>
+        <li><b>客户支持：</b>对接客户反馈问题，复现、初步定位（界面 / 数据）并跟进处理闭环</li>
+        <li><b>缺陷管理：</b>在公司自研工作台系统登记、跟踪缺陷与任务，规范复现步骤</li>
+      </ul>
     </div>
   </section>
 

@@ -244,8 +244,8 @@
       <div class="problem"><strong>解决的问题：</strong>通用大模型直出的测试用例方法不可溯、质量不稳，且"生成完就丢"，无法支撑真实测试管理流程。</div>
       <ul>
         <li><b>多 Agent 流水线：</b>「需求分析 → 测试点提炼 → 用例生成 → 独立评审」四段编排，dataclass 结构化传递，Agent 可单独替换</li>
-        <li><b>方法论注入：</b>显式注入等价类 / 边界值 / 场景法 / 错误猜测四类设计方法，每条用例标注 method 来源、全程可追溯</li>
-        <li><b>评审门禁：</b>独立评审 Agent 按 5 项标准打分（方法覆盖 / 结构 / 优先级 / 可追溯 / 边界±1），形成"生成-评审"对抗闭环</li>
+        <li><b>方法论注入：</b>显式注入等价类 / 边界值 / 场景法 / 错误猜测 / 判定表 / 状态迁移六类设计方法，每条用例标注 method 来源、全程可追溯</li>
+        <li><b>评审门禁：</b>独立评审 Agent 按 9 项标准打分（方法覆盖 / 结构 / 优先级 / 可追溯 / 边界±1 等），形成"生成-评审"对抗闭环</li>
         <li><b>业务闭环：</b>AI 产出经人工勾选采纳入库，覆盖用例库 → 测试执行 → 测试报告 → 缺陷跟踪 → 工作台看板，ID 全局唯一可追溯</li>
       </ul>
       <div class="shots">
@@ -265,21 +265,22 @@
 
     <!-- ② llm-qa-eval -->
     <div class="card reveal">
-      <h3>大模型问答系统质量评测与安全测试 <span class="en">llm-qa-eval</span><span class="badge">CI 通过</span></h3>
-      <div class="role-line">独立开发者 ｜ Python · Pytest · GitHub Actions</div>
+      <h3>大模型问答系统质量评测与安全测试 <span class="en">llm-qa-eval</span><span class="badge live">在线可访问</span><span class="badge">CI 通过</span></h3>
+      <div class="role-line">独立开发者 ｜ Python · FastAPI · React · Pytest · GitHub Actions</div>
       <div class="problem"><strong>解决的问题：</strong>大模型输出具有概率性、无法精确断言，RAG 问答系统的质量与安全风险难以量化。</div>
       <div class="pipe">
         <span class="pnode">100 条评测集<small>70 正常 · 15 注入 · 15 幻觉</small></span>
         <span class="parrow">→</span>
-        <span class="pnode dark">QATarget 被测对象<small>mock 离线 / OpenAI 兼容真实 LLM</small></span>
+        <span class="pnode dark">QATarget 被测对象<small>mock / weak / 自建 RAG / 真实 LLM 可插拔</small></span>
         <span class="parrow">→</span>
         <span class="pnode">三维指标<small>召回率 · 准确率 · 引用准确性</small></span>
         <span class="parrow">→</span>
-        <span class="pnode dark">自动回归报告<small>Pytest 参数化 + CI</small></span>
+        <span class="pnode dark">Web 平台与自动回归<small>FastAPI+React · Pytest + CI</small></span>
       </div>
       <ul>
-        <li><b>安全测试：</b>独立 security 模块内置 Prompt 注入、越狱（DAN / 角色扮演）攻击载荷，检测模型是否被带偏</li>
-        <li><b>效果：</b>模型 / 索引 / 提示词变更自动回归、一键出报告——把传统回归测试思想迁移到 AI 系统</li>
+        <li><b>「建 → 测 → 改」真实闭环：</b>评测发现自建 RAG 对注入/越狱无防御（inject 组通过率仅 73.3%），定位根因后为其加输入护栏，复测 100% 且三维指标无退化——「运行对比」页可看 A/B 实录</li>
+        <li><b>一站式 Web 平台：</b>发起评测 → 实时进度 → 结果下钻 → 版本 A/B 对比 → Red Team 攻防复盘 → 数据集管理 → Playground 单条试跑</li>
+        <li><b>安全测试：</b>内置 Prompt 注入、越狱（DAN / 角色扮演）攻击载荷与 ASR 攻破率统计，逐条归因可下钻</li>
       </ul>
       <div class="sub">
         <h4>被测对象（也是我的作品）：RAG 安全知识库问答 <span class="en">rag-qa-system</span></h4>
@@ -294,11 +295,14 @@
           <span class="parrow">→</span>
           <span class="pnode">引用编号答案<small>带 [n] 可溯源</small></span>
         </div>
-        <p>「建 RAG → 测 RAG」：它既是独立项目（Pytest 单测 + CI），又作为上面的被测对象，形成迭代闭环。
+        <p>「建 RAG → 测 RAG → 改 RAG」：它既是独立项目（Pytest 单测 + CI），又作为上面的被测对象——评测发现其无输入护栏
+          （inject 组 73.3% 被攻破）后加护栏复测 100%，闭环实录见上方 Demo 的「运行对比」页。
           <a href="https://github.com/shian555/rag-qa-system">GitHub 源码 →</a></p>
       </div>
       <div class="links">
+        <a class="btn primary" href="https://llm-qa-eval.onrender.com">▶ 在线 Demo（免安装）</a>
         <a class="btn" href="https://github.com/shian555/llm-qa-eval">GitHub 源码</a>
+        <span class="note">Render 免费层，首次打开约需 1 分钟唤醒；若打不开请看 GitHub 截图与源码</span>
       </div>
     </div>
 

@@ -283,7 +283,7 @@
         <li><b>安全测试：</b>内置 Prompt 注入、越狱（DAN / 角色扮演）攻击载荷与 ASR 攻破率统计，逐条归因可下钻</li>
       </ul>
       <div class="sub">
-        <h4>被测对象（也是我的作品）：RAG 安全知识库问答 <span class="en">rag-qa-system</span></h4>
+        <h4>内置被测对象（也是我会搭 RAG 的证明）：RAG 安全知识库问答 <span class="en">rag_impl</span></h4>
         <div class="pipe">
           <span class="pnode dark">安全文档<small>递归分块 512/50</small></span>
           <span class="parrow">→</span>
@@ -295,9 +295,8 @@
           <span class="parrow">→</span>
           <span class="pnode">引用编号答案<small>带 [n] 可溯源</small></span>
         </div>
-        <p>「建 RAG → 测 RAG → 改 RAG」：它既是独立项目（Pytest 单测 + CI），又作为上面的被测对象——评测发现其无输入护栏
-          （inject 组 73.3% 被攻破）后加护栏复测 100%，闭环实录见上方 Demo 的「运行对比」页。
-          <a href="https://github.com/shian555/rag-qa-system">GitHub 源码 →</a></p>
+        <p>「建 RAG → 测 RAG → 改 RAG」：RAG 链路（分块/检索/生成 + Pytest 单测）内置在本平台作为真实被测对象——
+          评测发现其无输入护栏（inject 组 73.3% 被攻破）后加护栏复测 100%，闭环实录见上方 Demo 的「运行对比」页。</p>
       </div>
       <div class="links">
         <a class="btn primary" href="https://llm-qa-eval.onrender.com">▶ 在线 Demo（免安装）</a>
